@@ -1,0 +1,35 @@
+<div class="card form-width">
+    <div class="card-body">
+        <h3>Create Testmony</h3>
+        <div class="h4 pb-2 mb-4 border-bottom border-dark">
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="mb-3 text-start">
+                    <label for="exampleFormControlInput1" class="form-label">Name</label>
+                    <input type="email" class="form-control" placeholder="name" [(ngModel)]="user.name">
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="mb-3 text-start">
+                    <label for="exampleFormControlInput1" class="form-label">Age</label>
+                    <input type="email" class="form-control" placeholder="age" [(ngModel)]="user.age">
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3 text-start">
+                <label for="formFile" class="form-label">Upload Image</label>
+                <input class="form-control" type="file" id="formFile" (change)="imageUpload($event)">
+            </div>
+
+            <div class="col-md-12 mb-3 text-start">
+                <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                    [(ngModel)]="user.description"></textarea>
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-outline-dark" (click)="CreateUpdateTestmony()">Create</button>
+    </div>
+</div>

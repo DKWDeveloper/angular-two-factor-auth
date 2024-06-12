@@ -1,0 +1,43 @@
+.width {
+    width: 99%
+}
+
+.chat-box {
+    height: 76vh;
+}
+
+.chat {
+    list-style: none;
+    padding: 10px;
+    margin: 1rem 0 0 0;
+}
+
+.message {
+    margin-bottom: 10px;
+}
+
+.message.sender .message-body {
+    background-color: #dcf8c6;
+    border-radius: 10px 10px 0 10px;
+}
+
+.message.receiver .message-body {
+    background-color: #a4c4ee;
+    border-radius: 10px 10px 10px 0;
+}
+
+.message-body {
+    padding: 7px;
+    max-width: 70%;
+    word-wrap: break-word;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.scroll{
+    overflow: auto;
+}

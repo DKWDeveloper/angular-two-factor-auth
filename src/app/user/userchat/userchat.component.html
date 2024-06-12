@@ -1,0 +1,67 @@
+<div class="row width ms-2">
+    <div class="col-md-4">
+        <div class="card form-width">
+            <div class="card-body">
+                <h3>Hi <span>{{loginUserName}}</span></h3>
+                <ul *ngFor="let user of userList; let i = index" class="list-group">
+                    <li class="list-group-item text-start cursor" (click)="onSelectedUserId(user)">{{user.name}}
+                        <sup [ngClass]="{'badge': true, 'text-bg-success': user.isOnline === '1', 'text-bg-danger':user.isOnline ==='0' }"
+                            class="badge text-bg-success">{{user.isOnline==='1'?'online': 'offline'}}</sup>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="form-width cursor" *ngIf="!isformShow" (click)="showChatForm()">Click Here for Chat</div>
+        <ng-container *ngIf="isformShow">
+            <div #messageContainer class="card scroll form-width">
+                <div class="card-body chat-box">
+                    <h3>User Chat</h3>
+                    <div class="" style="border: 1px solid #dee2e6;">
+                    </div>
+                    <div class="chat">
+                        <div *ngFor="let message of chatMessages; let i = index;" class="message d-flex"
+                            [ngClass]="{'justify-content-end sender': user.userId === message.senderId, 'justify-content-start receiver':user.userId !== message.senderId}">
+                            <div class="message-body">
+                                <div class="">
+                                    {{message.message}} <sub>&nbsp;&nbsp;&nbsp;12:30 am</sub>
+                                </div>
+                            </div>
+                            <div class="dropdown-center">
+                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li *ngIf="user.userId === message.senderId"><a class="dropdown-item"
+                                            (click)="editMessage(message)">Edit</a></li>
+                                    <li *ngIf="user.userId === message.senderId"><a class="dropdown-item"
+                                            (click)="deleteMessageforMe(message, i)">Delete For Me</a></li>
+                                    <li *ngIf="user.userId === message.senderId"><a class="dropdown-item"
+                                            (click)="deleteEveryOneChat(message, i)">Delete For Everyone</a></li>
+                                    <li *ngIf="user.userId !== message.senderId"
+                                        (click)="deleteMessageforMe(message, i)"><a class="dropdown-item">Delete For
+                                            receiver</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- <li class="message d-flex justify-content-start receiver">
+                            <div class="message-body">Hi there! I'm good, thank you <sub>&nbsp;&nbsp;&nbsp;9:30 pm</sub>
+                            </div>
+                        </li> -->
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!this.messageId" class="d-flex">
+                <input class="form-control form-control-lg" type="text" [(ngModel)]="message"
+                    (keypress)="onEnterKeyPress($event)">
+                <button type="button" class="btn btn-outline-dark" (click)="sendMessage()">Create</button>
+            </div>
+
+            <div class="d-flex" *ngIf="this.messageId">
+                <input class="form-control form-control-lg" type="text" [(ngModel)]="message">
+                <button type="button" class="btn btn-outline-dark" (click)="updateMessage()">update</button>
+            </div>
+        </ng-container>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="form-width card">
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let testMony of testMonyList; let i = index;">
+                    <th scope="row">{{i + 1}}</th>
+                    <td>{{testMony.name}}</td>
+                    <td>{{testMony.description}}</td>
+                    <td>{{testMony.age}}</td>
+                    <td>
+                        <img [src]="getImageUrl(testMony.image)" style="max-width: 100px; max-height: 100px;">
+                        <!-- <img src="assets/images/1701008628612-Screenshot%20(50).png"> -->
+                        <!-- <img style="max-width: 100px; max-height: 100px;" src="assets/images/Screenshot.png" alt="My Image"> -->
+                    </td>
+                    <td>
+                        <button [routerLink]="['/home/user/updateTestmony', testMony._id]" type="button"
+                            class="btn btn-outline-dark">Edit</button>
+                        <button type="button" class="btn btn-outline-dark" (click)="deleteTestmony(testMony._id)">Delete</button>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

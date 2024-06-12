@@ -1,0 +1,119 @@
+<main #main>
+    <div class="box">
+        <div class="inner-box">
+            <div class="forms-wrap">
+                <form action="index.html" autocomplete="off" class="sign-in-form">
+
+                    <div *ngIf="registerSuccessfullyMsg" class="alert alert-success alert-div" role="alert">
+                        Register Successfully !
+                    </div>
+
+                    <div class="logo">
+                        <img src="assets/images/logo.png" alt="easyclass" />
+                        <h4>easyclass</h4>
+                    </div>
+
+                    <div class="heading">
+                        <h2>Welcome Back</h2>
+                        <h6>Not registered yet?</h6>
+                        <a routerLink="" class="toggle" (click)="toggleSignUpMode()">Sign up</a>
+                    </div>
+                    <div class="actual-form">
+                        <div *ngIf="loginError" class="alert alert-danger alert-div" role="alert">
+                            {{loginError}} !
+                        </div>
+                        <div class="input-wrap">
+                            <input #inputName (focus)="handleInputFieldFocus(inputName)" (blur)="onInputBlur(inputName)" type="text"
+                                minlength="4" class="input-field" autocomplete="off" required [(ngModel)]="login.email"
+                                [ngModelOptions]="{standalone: true}" />
+                            <label>Email</label>
+                        </div>
+
+                        <div class="input-wrap">
+                            <input #inputPassword (focus)="handleInputFieldFocus(inputPassword)" (blur)="onInputBlur(inputPassword)"
+                                type="password" minlength="4" class="input-field" autocomplete="off" required [(ngModel)]="login.password"
+                                [ngModelOptions]="{standalone: true}" />
+                            <label>Password</label>
+                        </div>
+
+                        <input type="submit" value="Sign In" class="sign-btn" (click)="userlogin()" />
+                        
+                        <p class="text">
+                            Forgotten your password or your login details?
+                            <a href="#">Get help</a> signing in
+                        </p>
+                    </div>
+                </form>
+
+                <!-- This is for registartion form -->
+                <form action="index.html" autocomplete="off" class="sign-up-form">
+                    <div class="logo">
+                        <img src="assets/images/logo.png" alt="easyclass" />
+                        <h4>easyclass</h4>
+                    </div>
+                    <div class="heading">
+                        <h2>Get Started</h2>
+                        <h6>Already have an account?</h6>
+                        <a routerLink="" class="toggle" #toggleBtns (click)="toggleSignUpMode()">Sign in</a>
+                    </div>
+                    <div class="actual-form">
+                        <div *ngIf="error" class="alert alert-danger alert-div" role="alert">
+                            {{error}} !
+                        </div>
+                        <div class="input-wrap">
+                            <input #nameInput (focus)="handleInputFocus()" (blur)="handleInputBlur(nameInput.value)"
+                                [class.active]="isInputFocused" type="text" minlength="4" class="input-field" autocomplete="off" required
+                                [(ngModel)]="register.name" [ngModelOptions]="{standalone: true}" />
+                            <label>Name</label>
+                        </div>
+                        <div class="input-wrap">
+                            <input #inputEmail (focus)="handleInputFieldFocus(inputEmail)" (blur)="onInputBlur(inputEmail)" type=" email"
+                                class="input-field" autocomplete="off" required [(ngModel)]="register.email"
+                                [ngModelOptions]="{standalone: true}" />
+                            <label>Email</label>
+                        </div>
+                        <div class="input-wrap">
+                            <input #inputField (focus)="handleInputFieldFocus(inputField)" (blur)="onInputBlur(inputField)" type="password"
+                                minlength="4" class="input-field" autocomplete="off" required [(ngModel)]="register.password"
+                                [ngModelOptions]="{standalone: true}" />
+                            <label>Password</label>
+                        </div>
+                        <div class="input-wrap">
+                            <input #inputConfirm (focus)="handleInputFieldFocus(inputConfirm)" (blur)="onInputBlur(inputConfirm)"
+                                type="password" minlength="4" class="input-field" autocomplete="off" required
+                                [(ngModel)]="register.confirmPassword" [ngModelOptions]="{standalone: true}" />
+                            <label>Confirm Password</label>
+                        </div>
+                        <input type="submit" value="Sign Up" class="sign-btn" (click)="registerOrSignUp()" />
+                        <p class="text">
+                            By signing up, I agree to the
+                            <a routerLink="">Terms of Services</a> and
+                            <a routerLink="">Privacy Policy</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+            <div class="carousel">
+                <div class="images-wrapper">
+                    <img src="assets/images/image1.png" class="image img-1" [class.show]="currentImage === 'img-1'" alt="" />
+                    <img src="assets/images/image2.png" class="image img-2" [class.show]="currentImage === 'img-2'" alt="" />
+                    <img src="assets/images/image3.png" class="image img-3" [class.show]="currentImage === 'img-3'" alt="" />
+                </div>
+                <div class="text-slider">
+                    <div class="text-wrap">
+                        <div class="text-group" [style.transform]="textTransform">
+                            <h2>Create your own courses</h2>
+                            <h2>Customize as you like</h2>
+                            <h2>Invite students to your class</h2>
+                        </div>
+                    </div>
+                    <div class="bullets">
+                        <span class="active" [class.active]="currentBullet === 1" data-value="1" (click)="moveSlider(1)"></span>
+                        <span [class.active]="currentBullet === 2" data-value="2" (click)="moveSlider(2)"></span>
+                        <span [class.active]="currentBullet === 3" data-value="3" (click)="moveSlider(3)"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
